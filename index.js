@@ -12,4 +12,4 @@ app.get('*', function (request, response){
 })
 
 app.listen(port)
-console.log("server started on port " + port)
+console.log("JLab Server started on port " + port)

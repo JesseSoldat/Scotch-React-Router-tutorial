@@ -27887,6 +27887,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _carData = __webpack_require__(/*! ../carData.js */ 239);
+	
+	var _carData2 = _interopRequireDefault(_carData);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27898,15 +27902,35 @@
 	var Car = function (_Component) {
 		_inherits(Car, _Component);
 	
-		function Car() {
+		function Car(props) {
 			_classCallCheck(this, Car);
 	
-			return _possibleConstructorReturn(this, (Car.__proto__ || Object.getPrototypeOf(Car)).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, (Car.__proto__ || Object.getPrototypeOf(Car)).call(this, props));
+	
+			_this.state = {
+				cars: []
+			};
+			return _this;
 		}
 	
 		_createClass(Car, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+	
+				this.setState({ cars: _carData2.default });
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var carNode = this.state.cars.map(function (car) {
+					return _react2.default.createElement(
+						'a',
+						{ href: '#',
+							className: 'list-group-item',
+							key: car.id },
+						car.name
+					);
+				});
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -27914,6 +27938,11 @@
 						'h1',
 						null,
 						'Cars'
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'list-group' },
+						carNode
 					)
 				);
 			}
@@ -28049,8 +28078,9 @@
 										'li',
 										null,
 										_react2.default.createElement(
-											_reactRouter.Link,
-											{ to: '/' },
+											_reactRouter.IndexLink,
+											{ to: '/',
+												activeClassName: 'active' },
 											'Home'
 										)
 									),
@@ -28059,7 +28089,8 @@
 										null,
 										_react2.default.createElement(
 											_reactRouter.Link,
-											{ to: '/about' },
+											{ to: '/about',
+												activeClassName: 'active' },
 											'About'
 										)
 									),
@@ -28068,7 +28099,8 @@
 										null,
 										_react2.default.createElement(
 											_reactRouter.Link,
-											{ to: '/car' },
+											{ to: '/car',
+												activeClassName: 'active' },
 											'Car'
 										)
 									)
@@ -28089,6 +28121,64 @@
 	}(_react.Component);
 	
 	exports.default = Main;
+
+/***/ },
+/* 239 */
+/*!************************!*\
+  !*** ./src/carData.js ***!
+  \************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var carData = [{
+	    id: 1,
+	    name: 'Honda Accord Crosstour',
+	    year: '2010',
+	    model: 'Accord Crosstour',
+	    make: 'Honda',
+	    media: 'http://media.ed.edmunds-media.com/honda/accord-crosstour/2010/oem/2010_honda_accord-crosstour_4dr-hatchback_ex-l_fq_oem_4_500.jpg',
+	    price: '$16,811'
+	
+	}, {
+	    id: 2,
+	    name: 'Mercedes-Benz AMG GT Coupe',
+	    year: '2016',
+	    model: 'AMG',
+	    make: 'Mercedes Benz',
+	    media: 'http://media.ed.edmunds-media.com/mercedes-benz/amg-gt/2016/oem/2016_mercedes-benz_amg-gt_coupe_s_fq_oem_1_717.jpg',
+	    price: '$138,157'
+	
+	}, {
+	    id: 3,
+	    name: 'BMW X6 SUV',
+	    year: '2016',
+	    model: 'X6',
+	    make: 'BMW',
+	    media: 'http://media.ed.edmunds-media.com/bmw/x6/2016/oem/2016_bmw_x6_4dr-suv_xdrive50i_fq_oem_1_717.jpg',
+	    price: '$68,999'
+	}, {
+	    id: 4,
+	    name: 'Ford Edge SUV',
+	    year: '2016',
+	    model: 'Edge',
+	    make: 'Ford',
+	    media: 'http://media.ed.edmunds-media.com/ford/edge/2016/oem/2016_ford_edge_4dr-suv_sport_fq_oem_6_717.jpg',
+	    price: '$36,275'
+	}, {
+	    id: 5,
+	    name: 'Dodge Viper Coupe',
+	    year: '2017',
+	    model: 'Viper',
+	    make: 'Dodge',
+	    media: 'http://media.ed.edmunds-media.com/dodge/viper/2017/oem/2017_dodge_viper_coupe_acr_fq_oem_3_717.jpg',
+	    price: '$123,890'
+	}];
+	
+	exports.default = carData;
 
 /***/ }
 /******/ ]);
