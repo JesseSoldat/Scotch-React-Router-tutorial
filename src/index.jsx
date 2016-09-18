@@ -7,6 +7,9 @@ import Main from './common/Main.jsx';
 import Home from './common/Home.jsx';
 import About from './common/About.jsx';
 import Car from './car/Car.jsx';
+import CarDetail from './car/CarDetail.jsx';
+
+import carData from './carData.js';
 
 
 render(
@@ -14,7 +17,8 @@ render(
 	<Route path="/" component={Main}>
 		<IndexRoute component={Home}/>
 		<Route path="/about" component={About}/>
-		<Route path="/car" component={Car}/>
+		<Route path="/cars" component={Car} data={carData}/>
+		<Route path="/cars/:id" component={CarDetail} data={carData}/>
 	</Route>
 
 

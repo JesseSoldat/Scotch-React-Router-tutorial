@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
-import carData from '../carData.js';
+// import carData from '../carData.js';
+import { Link } from 'react-router';
 
 class Car extends Component {
 
-	constructor(props){
-		super(props)
+	// constructor(props){
+	// 	super(props)
 
-		this.state = {
-			cars: []
-		};
-	}
+	// 	this.state = {
+	// 		cars: []
+	// 	};
+	// }
 
 	componentDidMount(){
 		
-		this.setState({cars: carData});
+		// this.setState({cars: carData});
 	}
 
 	render(){
-		const carNode = this.state.cars.map( (car) => {
+		const cars = this.props.route.data;
+
+		const carNode = cars.map( (car) => {
 			return (
-			<a	href="#"
+			<Link to={'/cars/'+car.id}
 				className="list-group-item"
 				key={car.id}>
 				{car.name}
-			</a>
+			</Link>
 				)
 		});
 		return(
@@ -36,4 +39,4 @@ class Car extends Component {
 		);
 	}
 }
-export default Car
+export default Car;

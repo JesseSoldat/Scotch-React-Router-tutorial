@@ -73,6 +73,14 @@
 	
 	var _Car2 = _interopRequireDefault(_Car);
 	
+	var _CarDetail = __webpack_require__(/*! ./car/CarDetail.jsx */ 240);
+	
+	var _CarDetail2 = _interopRequireDefault(_CarDetail);
+	
+	var _carData = __webpack_require__(/*! ./carData.js */ 239);
+	
+	var _carData2 = _interopRequireDefault(_carData);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -83,7 +91,8 @@
 			{ path: '/', component: _Main2.default },
 			_react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
 			_react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default }),
-			_react2.default.createElement(_reactRouter.Route, { path: '/car', component: _Car2.default })
+			_react2.default.createElement(_reactRouter.Route, { path: '/cars', component: _Car2.default, data: _carData2.default }),
+			_react2.default.createElement(_reactRouter.Route, { path: '/cars/:id', component: _CarDetail2.default, data: _carData2.default })
 		)
 	), document.getElementById('container'));
 
@@ -27887,9 +27896,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _carData = __webpack_require__(/*! ../carData.js */ 239);
-	
-	var _carData2 = _interopRequireDefault(_carData);
+	var _reactRouter = __webpack_require__(/*! react-router */ 172);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27898,34 +27905,43 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import carData from '../carData.js';
+	
 	
 	var Car = function (_Component) {
 		_inherits(Car, _Component);
 	
-		function Car(props) {
+		function Car() {
 			_classCallCheck(this, Car);
 	
-			var _this = _possibleConstructorReturn(this, (Car.__proto__ || Object.getPrototypeOf(Car)).call(this, props));
-	
-			_this.state = {
-				cars: []
-			};
-			return _this;
+			return _possibleConstructorReturn(this, (Car.__proto__ || Object.getPrototypeOf(Car)).apply(this, arguments));
 		}
 	
 		_createClass(Car, [{
 			key: 'componentDidMount',
+	
+	
+			// constructor(props){
+			// 	super(props)
+	
+			// 	this.state = {
+			// 		cars: []
+			// 	};
+			// }
+	
 			value: function componentDidMount() {
 	
-				this.setState({ cars: _carData2.default });
+				// this.setState({cars: carData});
 			}
 		}, {
 			key: 'render',
 			value: function render() {
-				var carNode = this.state.cars.map(function (car) {
+				var cars = this.props.route.data;
+	
+				var carNode = cars.map(function (car) {
 					return _react2.default.createElement(
-						'a',
-						{ href: '#',
+						_reactRouter.Link,
+						{ to: '/cars/' + car.id,
 							className: 'list-group-item',
 							key: car.id },
 						car.name
@@ -28099,7 +28115,7 @@
 										null,
 										_react2.default.createElement(
 											_reactRouter.Link,
-											{ to: '/car',
+											{ to: '/cars',
 												activeClassName: 'active' },
 											'Car'
 										)
@@ -28179,6 +28195,137 @@
 	}];
 	
 	exports.default = carData;
+
+/***/ },
+/* 240 */
+/*!*******************************!*\
+  !*** ./src/car/CarDetail.jsx ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CarDetail = function (_Component) {
+		_inherits(CarDetail, _Component);
+	
+		function CarDetail() {
+			_classCallCheck(this, CarDetail);
+	
+			return _possibleConstructorReturn(this, (CarDetail.__proto__ || Object.getPrototypeOf(CarDetail)).apply(this, arguments));
+		}
+	
+		_createClass(CarDetail, [{
+			key: "render",
+			value: function render() {
+	
+				var cars = this.props.route.data;
+				var id = this.props.params.id;
+	
+				var car = cars.filter(function (car) {
+					if (car.id == id)
+						// console.log(car);
+						return car;
+				});
+	
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						"h3",
+						null,
+						car[0].name
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "row" },
+						_react2.default.createElement(
+							"div",
+							{ className: "col-sm-6 col-md-4" },
+							_react2.default.createElement(
+								"div",
+								{ className: "thumbnail" },
+								_react2.default.createElement("img", { src: car[0].media, alt: car[0].name })
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "col-sm-6 col-md-4" },
+							_react2.default.createElement(
+								"ul",
+								null,
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"strong",
+										null,
+										"Model"
+									),
+									": ",
+									car[0].model
+								),
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"strong",
+										null,
+										"Make"
+									),
+									": ",
+									car[0].make
+								),
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"strong",
+										null,
+										"Year"
+									),
+									": ",
+									car[0].year
+								),
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"strong",
+										null,
+										"Price"
+									),
+									": ",
+									car[0].price
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+	
+		return CarDetail;
+	}(_react.Component);
+	
+	exports.default = CarDetail;
 
 /***/ }
 /******/ ]);

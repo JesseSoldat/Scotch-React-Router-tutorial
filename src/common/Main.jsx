@@ -25,7 +25,7 @@ class Main extends Component {
 								About</Link>
 							</li>
 							<li>
-								<Link to="/car"
+								<Link to="/cars"
 								activeClassName="active">
 								Car</Link>
 							</li>
